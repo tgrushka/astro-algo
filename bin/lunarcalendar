@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+# lunarcalendar.rb
+
+# Print a lunar calendar for the given year (default current year).
+
+require File.join(File.dirname(__FILE__), '../lib/lunaryear')
+
+
+
+if ARGV.length == 0
+    year = Time.now.year
+else
+    year = ARGV[0].to_i
+end
+
+
+
+lunation = LunarYear.new_moon_before_vernal_equinox(year)
+next_years_lunation = LunarYear.new_moon_before_vernal_equinox(year + 1)
+vernal_equinox = Astro.date_of_vernal_equinox(year).to_utc
+vemonth = vernal_equinox.month
+veday = vernal_equinox.day
+
+moonth = 0
+while lunation < next_years_lunation
+    moon_date = Astro.date_of_moon(lunation, Astro::PhaseNew).to_utc
+    next_moon = Astro.date_of_moon(lunation + 1, Astro::PhaseNew).to_utc
+    moon_day = 0
+    until moon_date.month == next_moon.month && moon_date.day == next_moon.day
+        ve = vemonth == moon_date.month && veday == moon_date.day ? '*' : ' '
+        puts '%2d-%02d  %s%s' % [moonth, moon_day, moon_date.strftime('%b %d'), ve]
+        moon_day += 1
+        moon_date += 1
+    end
+    puts '--------------'
+    lunation += 1
+    moonth += 1
+end

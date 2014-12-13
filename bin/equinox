@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+# equinox.rb
+
+# Compute the date of the vernal equinox for a given year (default current year).
+#
+# Example: compute the date and time of the vernal equinox for 2008.
+#    $ equinox 2008              => Thu Mar 20 05:48:18 2008
+
+require File.join(File.dirname(__FILE__), '../lib/astro-algo')
+
+
+if ARGV.length == 0
+    year = Time.now.year
+else
+    year = ARGV[0].to_i
+end
+
+puts Astro.date_of_vernal_equinox(year).to_utc.asctime
+

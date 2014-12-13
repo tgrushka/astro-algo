@@ -1,0 +1,23 @@
+= Astronomical Algorithms
+
+This library implements algorithms from Jean Meeus, <i>Astronomical Algorithms</i>,
+2nd English Edition, Willmann-Bell, Inc., Richmond, Virginia, 1999, with corrections
+as of June 15, 2005.
+
+Gem astro-algo provides two modules:
+
+* Astro which implements algorithms from the book. (require 'astro-algo')
+* LunarYear which implements helper routines for calculating lunar years. (require 'lunaryear')
+ 
+This gem also comes with several command line scripts.
+equinox::       prints the date and time of the vernal equinox for the given year.
+lunarcalendar:: prints a conversion chart between the customary Gregarian
+                calendar and a lunar year beginning with the full moon on or before
+                the vernal equinox.
+moon_clock.rb:: a Tk GUI application which displays information about the current
+                lunation.
+moons::         prints the phases of the moon for the given year.
+
+This is a work in progress. Only the algorithms from <i>Astronomical Algorithms</i>
+needed to support my hobby in the LunarYear have been implemented. I will add more
+algorithms from the book in time.

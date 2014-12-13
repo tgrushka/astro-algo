@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+# moons
+
+# Print a list of dates and times for phases of the moon for given
+# year (default current year).
+
+require File.join(File.dirname(__FILE__), '../lib/astro-algo')
+
+
+
+if ARGV.length == 0
+    year = DateTime.now.year
+else
+    year = ARGV[0].to_i
+end
+
+DateFormat = '%Y-%m-%d %H:%M:%S   '
+
+#puts '    ' + date.year.to_s
+lunation = Astro.first_lunation_of_year(year)
+next_year = DateTime.new(year + 1, 1, 1)
+
+loop do
+    new_moon = Astro.date_of_moon(lunation, Astro::PhaseNew).to_utc
+    break if new_moon >= next_year
+    print new_moon.strftime(DateFormat)
+    print Astro.date_of_moon(lunation, Astro::PhaseFirstQuarter).to_utc.strftime(DateFormat)
+    print Astro.date_of_moon(lunation, Astro::PhaseFull).to_utc.strftime(DateFormat)
+    puts  Astro.date_of_moon(lunation, Astro::PhaseLastQuarter).to_utc.strftime(DateFormat)
+    lunation += 1
+end
