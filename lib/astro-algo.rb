@@ -350,7 +350,7 @@ module Astro
             corr2 += Math.sin((a % 360.0).to_rad) * term[2]
         end
 
-        DateTime.jd((jde + corr2).to_r)
+        DateTime.jd((jde + corr2).to_r) + 0.5
     end
 
     # Find number of first lunation (New Moon) for a given year.
@@ -429,7 +429,7 @@ module Astro
 
         ve = jdme + 0.000_01 * s / lambda
 
-        DateTime.jd(ve.to_r)
+        DateTime.jd(ve.to_r) + 0.5
     end
 
     # Compute date and time of Vernal Equinox for given year.
