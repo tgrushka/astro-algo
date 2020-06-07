@@ -104,7 +104,7 @@ end
 
 module Astro
     
-    VERSION = '0.0.1'
+    VERSION = '0.0.2'
 
     # Compute difference between dynamical time and UTC in seconds.
     # See http://sunearth.gsfc.nasa.gov/eclipse/SEcat5/deltatpoly.html.
